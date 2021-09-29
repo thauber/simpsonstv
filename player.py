@@ -12,7 +12,7 @@ def getVideos():
     global videos
     videos = []
     for file in os.listdir(directory):
-        if file.lower().endswith('.mp4'):
+        if file.lower().endswith('.mkv'):
             videos.append(os.path.join(directory, file))
 
 
@@ -22,7 +22,8 @@ def playVideos():
         getVideos()
         time.sleep(5)
         return
-    random.shuffle(videos)
+    index = random.randint(0, len(videos)-1)
+    videos = videos[index:] + videos[:index]
     for video in videos:
         playProcess = Popen(['omxplayer', '--no-osd', '--aspect-mode', 'fill', video])
         playProcess.wait()
