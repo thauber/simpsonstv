@@ -11,7 +11,7 @@ videos = []
 def getVideos():
     global videos
     videos = []
-    for file in os.listdir(directory):
+    for file in sorted(os.listdir(directory)):
         if file.lower().endswith('.mkv'):
             videos.append(os.path.join(directory, file))
 
